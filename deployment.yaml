@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hello
-          image: us-central1-docker.pkg.dev/YOUR_PROJECT_ID/sample-app/hello:v1
+          image: us-central1-docker.pkg.dev/my-argo-project/sample-app/hello:v1
           ports:
             - containerPort: 80
 
