@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: hello=us-central1-docker.pkg.dev/my-argo-project/sample-app/hello
+    argocd-image-updater.argoproj.io/hello.update-strategy: latest
+    argocd-image-updater.argoproj.io/hello.pull-secret: gcr-creds
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/atulghodmare777/argo-proj.git'
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
