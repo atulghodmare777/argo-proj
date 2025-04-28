@@ -1,0 +1,16 @@
+name: Second Workflow
+
+on:
+  repository_dispatch:
+    types: [trigger-second-workflow]
+
+jobs:
+  run-second:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run second job
+        run: echo "Hello from the second workflow!"
