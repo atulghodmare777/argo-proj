@@ -1,0 +1,27 @@
+name: First Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t my-docker-image .
+
+      - name: Run Docker Container
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+        run: |
+          docker run --rm \
+            -e GITHUB_TOKEN=${GITHUB_TOKEN} \
+            -e GITHUB_REPO=${GITHUB_REPO} \
+            my-docker-image
