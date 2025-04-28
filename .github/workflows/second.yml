@@ -1,9 +1,9 @@
 name: Second Workflow
 
 on:
-  repository_dispatch:
-    types: [trigger-second-workflow]
-
+#  repository_dispatch:
+#    types: [trigger-second-workflow]
+  workflow_dispatch:
 jobs:
   run-second:
     runs-on: ubuntu-latest
