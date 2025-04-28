@@ -16,8 +16,8 @@ ENV GITHUB_TOKEN="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"
 ENV GITHUB_REPO="atulghodmare777/argo-proj"
 ENV EVENT_TYPE="trigger-second-workflow"
 
-# Authenticate gh CLI using the GitHub token (using echo and pipe method for bash)
-RUN echo "$GITHUB_TOKEN" | gh auth login --with-token
+# Clear GITHUB_TOKEN to avoid conflicts with authentication
+RUN unset GITHUB_TOKEN && echo "$GITHUB_TOKEN" | gh auth login --with-token
 
 # Your normal commands
 RUN echo "Running some setup commands..." \
