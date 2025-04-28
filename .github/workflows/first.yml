@@ -1,4 +1,4 @@
-name: First Workflow
+name: Build and Run Docker Workflow
 
 on:
   push:
@@ -6,22 +6,29 @@ on:
       - main
 
 jobs:
-  build-and-run:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      # Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Build Docker Image
-        run: docker build -t my-docker-image .
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-      - name: Run Docker Container
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          GITHUB_REPO: "atulghodmare777/argo-proj"
+      # Build the Docker image
+      - name: Build Docker image
         run: |
-          docker run --rm \
-            -e GITHUB_TOKEN=${GITHUB_TOKEN} \
-            -e GITHUB_REPO=${GITHUB_REPO} \
-            my-docker-image
+          docker build --build-arg PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -t my-docker-image .
+
+      # Optionally push the image to Docker Hub or any other registry
+      - name: Push Docker image
+        run: |
+          docker push my-docker-image
+
+      # Run the workflow with the token
+      - name: Run GitHub Actions workflow
+        run: |
+          docker run --rm my-docker-image
+
