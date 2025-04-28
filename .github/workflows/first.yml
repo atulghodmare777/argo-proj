@@ -18,8 +18,8 @@ jobs:
 
       - name: Run Docker Container
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_TOKEN: "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"
+          GITHUB_REPO: "atulghodmare777/argo-proj"
         run: |
           docker run --rm \
             -e GITHUB_TOKEN=${GITHUB_TOKEN} \
