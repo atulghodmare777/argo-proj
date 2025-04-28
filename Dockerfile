@@ -1,9 +1,12 @@
+# Use an official base image like Ubuntu or any other image you prefer
 FROM ubuntu:20.04
+
 # Ensure you have necessary packages installed
 RUN apt-get update && apt-get install -y \
     curl \
     jq \
-    git
+    git \
+    ca-certificates
 
 # Install GitHub CLI
 RUN LATEST_VERSION=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | jq -r .tag_name) && \
@@ -11,8 +14,8 @@ RUN LATEST_VERSION=$(curl -s https://api.github.com/repos/cli/cli/releases/lates
     dpkg -i gh-cli.deb && \
     apt-get install -f -y
 
-# Authenticate with GitHub CLI using an environment variable (GH_TOKEN will be passed in CI/CD)
-RUN gh auth login --with-token <<< "$PERSONAL_ACCESS_TOKEN"
+# Authenticate with GitHub CLI using the PERSONAL_ACCESS_TOKEN environment variable
+RUN echo "$PERSONAL_ACCESS_TOKEN" | gh auth login --with-token
 
 # Run workflow with GitHub CLI
 RUN gh workflow run second.yml \
