@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 RUN apt-get update && apt-get install -y curl
 
 # Set environment variables inside docker (optional, or you can pass them during docker run)
-ENV GITHUB_TOKEN="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"
+ENV GITHUB_TOKEN="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"
 ENV GITHUB_REPO="atulghodmare777/argo-proj"
 ENV EVENT_TYPE="trigger-second-workflow"
 
