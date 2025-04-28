@@ -18,7 +18,7 @@ jobs:
 
       - name: Run Docker Container
         env:
-          GITHUB_TOKEN: "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"
+          GITHUB_TOKEN: "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"
           GITHUB_REPO: "atulghodmare777/argo-proj"
         run: |
           docker run --rm \
