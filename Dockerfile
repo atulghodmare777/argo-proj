@@ -1,9 +1,9 @@
 # Use basic image
 FROM ubuntu:20.04
 
-# Install necessary dependencies including jq for JSON parsing
+# Install necessary dependencies including git and jq for JSON parsing
 RUN apt-get update && \
-    apt-get install -y curl gnupg2 lsb-release ca-certificates jq
+    apt-get install -y curl gnupg2 lsb-release ca-certificates jq git
 
 # Install GitHub CLI directly via dynamic version download
 RUN LATEST_VERSION=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | jq -r .tag_name) && \
