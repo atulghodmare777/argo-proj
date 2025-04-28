@@ -24,7 +24,7 @@ RUN echo "Running some setup commands..." \
     && echo "Doing something important..."
 
 # After normal commands, trigger second workflow using gh CLI
-CMD gh workflow run second.yaml \
+CMD gh workflow run second.yml \
     --ref main \
     --repo $GITHUB_REPO
 
