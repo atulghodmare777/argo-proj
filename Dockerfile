@@ -1,3 +1,4 @@
+FROM ubuntu:20.04
 # Ensure you have necessary packages installed
 RUN apt-get update && apt-get install -y \
     curl \
