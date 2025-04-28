@@ -17,7 +17,7 @@ ENV GITHUB_REPO="atulghodmare777/argo-proj"
 ENV EVENT_TYPE="trigger-second-workflow"
 
 # Authenticate gh CLI using the GitHub token
-RUN echo $GITHUB_TOKEN | gh auth login --with-token
+RUN gh auth login --with-token <<< "$GITHUB_TOKEN"
 
 # Your normal commands
 RUN echo "Running some setup commands..." \
