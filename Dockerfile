@@ -16,11 +16,10 @@ ENV GITHUB_TOKEN="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"
 ENV GITHUB_REPO="atulghodmare777/argo-proj"
 ENV EVENT_TYPE="trigger-second-workflow"
 
-# Run gh command with token directly without login
+# Run gh command with token directly without login (token is already set in environment)
 RUN gh workflow run second.yaml \
     --ref main \
-    --repo $GITHUB_REPO \
-    --token $GITHUB_TOKEN
+    --repo $GITHUB_REPO
 
 # After normal commands, your final commands
 CMD echo "Finished setting up"
