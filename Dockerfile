@@ -13,14 +13,15 @@ ENV GH_TOKEN=$PERSONAL_ACCESS_TOKEN
 ENV GITHUB_REPO="atulghodmare777/argo-proj"
 
 CMD bash -c "\
-  git config --global user.email 'github-actions@example.com' && \
-  git config --global user.name 'github-actions' && \
-  git clone https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPO repo && \
-  cd repo && \
-  echo \"Triggered at $(date)\" >> tag-log.txt && \
-  git add tag-log.txt && \
-  git commit -m 'Trigger tag for second workflow' && \
-  TAG_NAME=v$(date +%Y%m%d%H%M%S) && \
-  git tag $TAG_NAME && \
-  git push origin main --follow-tags && \
-  echo \"Pushed tag: $TAG_NAME\""
+  git config --global user.email 'bot@example.com' && \
+  git config --global user.name 'GitHub Bot' && \
+  git clone https://$GH_TOKEN@github.com/$GITHUB_REPO && \
+  cd $(basename $GITHUB_REPO) && \
+  echo 'some change $(date)' >> trigger.txt && \
+  git add trigger.txt && \
+  git commit -m 'chore(tag): trigger new version' && \
+  git push origin main && \
+  export NEW_TAG=v$(date +'%Y%m%d%H%M%S') && \
+  git tag $NEW_TAG && \
+  git push origin $NEW_TAG"
+
