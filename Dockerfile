@@ -1,4 +1,3 @@
-# Use an official Ubuntu base image
 FROM ubuntu:20.04
 
 # Install dependencies
@@ -22,4 +21,3 @@ ENV TAG_NAME=$TAG_NAME
 
 # Trigger second workflow
 CMD gh workflow run second.yml --ref main --repo $GITHUB_REPO -f tag=$TAG_NAME
-
