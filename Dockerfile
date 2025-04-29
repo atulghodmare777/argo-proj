@@ -8,6 +8,7 @@ RUN LATEST_VERSION=$(curl -s https://api.github.com/repos/cli/cli/releases/lates
     dpkg -i gh-cli.deb && \
     apt-get install -f -y
 
+# Accept arguments
 ARG PERSONAL_ACCESS_TOKEN
 ENV GH_TOKEN=$PERSONAL_ACCESS_TOKEN
 ENV GITHUB_REPO="atulghodmare777/argo-proj"
@@ -23,4 +24,4 @@ CMD bash -c "\
   git push origin main && \
   export NEW_TAG=v$(date +'%Y%m%d%H%M%S') && \
   git tag $NEW_TAG && \
-  git push --tags"  # Ensure all tags are pushed, including the new one
+  git push origin $NEW_TAG"
