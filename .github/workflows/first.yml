@@ -8,9 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Sleep for GitHub to recognize new workflows
         run: sleep 20
 
@@ -30,4 +32,3 @@ jobs:
             -e GH_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} \
             -e TAG_NAME=v1.0.2 \
             my-docker-image
-
