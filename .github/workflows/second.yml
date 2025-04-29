@@ -17,3 +17,4 @@ jobs:
       - name: Show the tag
         run: echo "Triggered by tag: ${{ github.event.inputs.tag }}"
 
+# Force re-index
