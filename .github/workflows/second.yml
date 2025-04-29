@@ -8,10 +8,9 @@ on:
 jobs:
   run-second:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Print tag that triggered workflow
+      - name: Show tag message
         run: echo "Triggered by tag ${{ github.ref }}"
