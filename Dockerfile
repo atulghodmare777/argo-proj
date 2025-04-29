@@ -18,7 +18,12 @@ ENV GITHUB_REPO="atulghodmare777/argo-proj"
 ENV TAG_NAME=$TAG_NAME
 
 # Use workflow FILENAME instead of workflow name
-CMD gh workflow run second.yml \
+#CMD gh workflow run second.yml \
+#      --ref main \
+#      --repo $GITHUB_REPO \
+#      -f tag=$TAG_NAME
+CMD gh workflow list --repo $GITHUB_REPO && \
+    gh workflow run second.yml \
       --ref main \
       --repo $GITHUB_REPO \
       -f tag=$TAG_NAME
