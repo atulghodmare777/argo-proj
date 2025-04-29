@@ -19,7 +19,7 @@ jobs:
         run: |
              docker build \
              --build-arg PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} \
-             --build-arg TAG_NAME=v1.0.0 \
+             --build-arg TAG_NAME=v1.0.1 \
              -t my-docker-image .
 
       - name: Run Docker container and trigger second workflow
