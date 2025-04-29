@@ -11,10 +11,11 @@ jobs:
   run-second:
     if: startsWith(github.event.inputs.tag, 'v') || startsWith(github.event.inputs.tag, 'release-')
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Show the tag
         run: echo "Triggered by tag: ${{ github.event.inputs.tag }}"
 
-# Force re-index
