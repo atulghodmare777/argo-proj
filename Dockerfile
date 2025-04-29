@@ -23,5 +23,4 @@ CMD bash -c "\
   git push origin main && \
   export NEW_TAG=v$(date +'%Y%m%d%H%M%S') && \
   git tag $NEW_TAG && \
-  git push origin $NEW_TAG"
-
+  git push --tags"  # Ensure all tags are pushed, including the new one
