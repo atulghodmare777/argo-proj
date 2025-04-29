@@ -1,16 +1,21 @@
 name: Second Workflow
 
 on:
-#  repository_dispatch:
-#    types: [trigger-second-workflow]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to run workflow for'
+        required: true
+
 jobs:
   run-second:
+    if: startsWith(github.event.inputs.tag, 'v') || startsWith(github.event.inputs.tag, 'release-')
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run second job
-        run: echo "Hello from the second workflow!"
+      - name: Show the tag
+        run: echo "Triggered by tag: ${{ github.event.inputs.tag }}"
+
