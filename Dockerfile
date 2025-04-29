@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-# Install necessary dependencies
+# Install dependencies
 RUN apt-get update && \
     apt-get install -y curl gnupg2 lsb-release ca-certificates jq git bash
 
@@ -10,16 +10,10 @@ RUN LATEST_VERSION=$(curl -s https://api.github.com/repos/cli/cli/releases/lates
     dpkg -i gh-cli.deb && \
     apt-get install -f -y
 
-# Accept a build-time argument
+# Accept build-time arg and pass to runtime ENV
 ARG PERSONAL_ACCESS_TOKEN
-
-# Set it as ENV so it persists into runtime
 ENV GH_TOKEN=$PERSONAL_ACCESS_TOKEN
 ENV GITHUB_REPO="atulghodmare777/argo-proj"
 
-# This should not be done at build time!
-# Don't do RUN gh auth login here, do it in CMD or entrypoint
-
-# Default command: login and run workflow
-CMD echo "$GH_TOKEN" | gh auth login --with-token && \
-    gh workflow run second.yml --ref main --repo $GITHUB_REPO
+# Just run the workflow directly — GH_TOKEN will be used automatically
+CMD gh workflow run second.yml --ref main --repo $GITHUB_REPO
