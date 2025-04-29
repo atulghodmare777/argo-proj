@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Sleep for GitHub to recognize new workflows
+        run: sleep 20
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
